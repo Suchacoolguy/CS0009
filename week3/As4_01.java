@@ -1,29 +1,43 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.Scanner;
 
 public class As4_01 {
+    public static void main(String[] args) throws IOException {
+        File source = new File(args[0]);
+        File dest = new File(args[1]);
+        Scanner sc = new Scanner(System.in);
 
-    private static void copyFileUsingStream(File source, File dest) throws IOException {
-        InputStream is = null;
-        OutputStream os = null;
-        try {
-            is = new FileInputStream(source);
-            os = new FileOutputStream(dest);
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = is.read(buffer)) > 0) {
-                os.write(buffer, 0, length);
-            }
-        } finally {
-            is.close();
-            os.close();
+
+        if (!source.exists())
+        {
+            System.out.println(source + "not found.");
+            return;
         }
-    }
+        
+        if (source.exists() && dest.exists())
+        {
+                System.out.print("Overwrite?(y/n) : ");
+                char yesOrNo = sc.next().charAt(0);
+                if (yesOrNo == 'y')
+                {
+                    Files.copy(source.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    System.out.println(source + " is copied to " + dest + " (overwriting)");
+                }
+                else
+                {
+                    System.out.println("0 file(s) copied.");
+                }
+                
 
-    public static void main(String[] args) {
+        }
+        else
+        {
+            Files.copy(source.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            System.out.println(source + " is copied to " + dest);
+        }
+        
     }
 }
