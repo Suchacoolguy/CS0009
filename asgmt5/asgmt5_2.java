@@ -1,5 +1,7 @@
 import java.util.List;
 
+import javax.security.auth.Subject;
+
 public class asgmt5_2 {
     public static void main(String[] args) {
         // Student kim = new Student();
@@ -13,7 +15,8 @@ public class asgmt5_2 {
         "통해 알아본다. 또한, 설계 프로젝트 결과 보고 방법, 팀원의 활동 및 공학도로서의 윤리에 대해서도 알아본다.");
 
         Student kim = new Student();
-        kim.setInfo("kim", 20201364 ,3.56, fp0001, cs0005, cs0007);
+        String[] abc = {"fp0001", "cs0005", "cs0007"};
+        kim.setInfo("kim", 20201364 ,3.56, abc);
 
         System.out.println("name: " + kim.name);
         kim.printSubjects();
@@ -25,17 +28,15 @@ class Student {
     String name;
     int studentID;
     double gpa;
-    List<Subject> subjects;
+    // List<Subject> subjects;
+    Subject[] subjects = new Subject[3];
 
-    void setInfo(String name, int studentID, double gpa, Subject... subjects)
+    void setInfo(String name, int studentID, double gpa, Subject[] subjects)
     {
         this.name = name;
         this.studentID = studentID;
         this.gpa = gpa;
-        for (Subject subject : subjects)
-        {
-            this.subjects.add(subject);
-        }
+        this.subjects = subjects;
     }
 
     void printSubjects()

@@ -3,26 +3,28 @@ import java.util.Scanner;
 
 public class asgmt5_1 {
     public static void main(String[] args) {
-        Account myAcc = new Account("Shawn");
-        Account aliAcc = new Account("Ali");
-        
         Scanner scanner = new Scanner(System.in);
-        
+
+        Customer shawn = new Customer("Shawn");
+        Customer ali = new Customer("Ali");
+
         System.out.println("Set Balance: ");
-        myAcc.deposit(scanner.nextInt());
+        shawn.acc.deposit(scanner.nextInt());
 
-        Customer shawn = new Customer(myAcc);
-        Customer ali = new Customer(aliAcc);
-        shawn.sendMoney(15000, ali);
+        System.out.println("How much do you want to send?");
+        int sendingMoney = scanner.nextInt();
+        shawn.sendMoney(sendingMoney, ali);
 
-        System.out.println("ali's balance: " + aliAcc.getBalance());
+        System.out.println("ali's balance: " + ali.acc.getBalance());
     }
 }
+
+
 
 class Account{
     private  int      accNum;
     private  String  owner;
-    private  int      balance;
+    private  int      balance = 0;
     private static int currentNumber = 0;
     
 
@@ -47,13 +49,13 @@ public Account(String owner) {
 }
 
 class Customer{
-    private String name;
-    private Account acc;
+    public String name;
+    public Account acc;
 
-    Customer(Account acc)
+    Customer(String name)
     {
-        this.name = acc.getOwner();
-        this.acc = acc;
+        this.name = name;
+        this.acc = new Account(name);
     }
     
 
@@ -65,7 +67,7 @@ class Customer{
             toWhom.getAcc().deposit(money);
 
             System.out.println("***  Successfully Sent $" + money + " to " + toWhom.getAcc().getOwner() + "  ***");
-            System.out.println("Balance: " + acc.getBalance());
+            System.out.println("My Balance: " + acc.getBalance());
             
         }
         else

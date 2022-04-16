@@ -36,7 +36,7 @@ class Time{
     public void printFormatted() {
         
         System.out.println("Time: ");
-        System.out.print(String.format("%04d-%02d-%02d\n%02d:%02d:%02d",year, month, date, hour, minute, second));
+        System.out.printf("%04d-%02d-%02d\n%02d:%02d:%02d",year, month, date, hour, minute, second);
     }
 }
 
