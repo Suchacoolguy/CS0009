@@ -133,17 +133,33 @@ class Bycycle{
 }
 
 class Radio{
-    double frequency;
-    String location;
+    private double frequency;
+    private String location;
 
     public void setFrequency(String location) {
+        Scanner sc = new Scanner(System.in);
+        location = sc.next();
+
         switch(location)
         {
             case "대구":
-            frequency = 96.5;
-            break;
+                frequency = 96.5;
+                break;
             case "서울":
-            
+                frequency = 95.9;
+                break;
+            case "부산":
+                frequency = 106.5;
+                break;
+            case "광주":
+                frequency = 93.9;
+                break;
+            case "대전":
+                frequency = 92.5;
+                break;
+            default:
+                frequency = 95.9;
+                break;
         }
     }
 }
