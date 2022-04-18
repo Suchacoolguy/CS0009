@@ -162,4 +162,11 @@ class Radio{
                 break;
         }
     }
+
+    public void printStatus()
+    {
+        System.out.println("- - - - - - - - - - - - - - - - - - -");
+        System.out.println("Frequency: " + frequency);
+        System.out.println("location: " + location);
+    }
 }

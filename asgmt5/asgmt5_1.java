@@ -28,7 +28,6 @@ class Account{
     private static int currentNumber = 0;
     
 
-/* 행동 모델링: getters(상태 검색) and setters(상태 변경) */
 public  int      getAccNum()  { return accNum; }
 public  int      getBalance()   { return balance; }
 public  String  getOwner()    { return owner; }
@@ -36,12 +35,12 @@ public  String  getOwner()    { return owner; }
 public void  deposit(int amount) { balance += amount; } 
 public void  withdraw(int amount) { balance  -= amount; }
 private static int nextNumber() { return ++currentNumber; }
-/* 생성자 - 상태 초기화 */
+
 public Account(String owner) {
     accNum = nextNumber();
-    this.owner = owner; 	// this) 현재 객체를 가리키는 
-			//        참조 변수
-/* 정적 멤버 */
+    this.owner = owner; 
+
+
  
 }
 
