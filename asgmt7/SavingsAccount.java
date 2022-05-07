@@ -1,11 +1,11 @@
 import java.time.LocalDate;
 
 public class SavingsAccount extends Account{
-    String contractDate;
-    String expirationDate;
+    LocalDate contractDate;
+    LocalDate expirationDate;
     int monthlyPayment;
     double interestRate;
-    public SavingsAccount(int amount, String contractDate, String expirationDate, int monthlyPayment, double interestRate)
+    public SavingsAccount(int amount, LocalDate contractDate, LocalDate expirationDate, int monthlyPayment, double interestRate)
     {
         super(amount);
         this.contractDate = contractDate;
@@ -17,7 +17,7 @@ public class SavingsAccount extends Account{
     @Override
     public void withdraw(int amount) 
     {
-        if (expirationDate.equals(LocalDate.now().toString()) && (balance >= amount))
+        if ((expirationDate.equals(LocalDate.now())) && (balance >= amount))
             balance -= amount;
         else if (balance < amount)
             System.out.println("not enough balance");
@@ -28,8 +28,11 @@ public class SavingsAccount extends Account{
     @Override
     public void deposit(int amount)
     {
-        if (contractDate.equals(LocalDate.now().toString()))
+        if (contractDate.getDayOfMonth() == LocalDate.now().getDayOfMonth())
+        {
             balance += monthlyPayment;
+            System.out.println("입금완료");
+        }
         else
             System.out.println("입금일이 아닙니다.");
     }
@@ -38,5 +41,4 @@ public class SavingsAccount extends Account{
     {
         balance += (int) (balance * interestRate);
     }
-
 }
